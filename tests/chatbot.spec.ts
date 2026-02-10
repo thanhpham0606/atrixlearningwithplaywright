@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import path from 'path';
 
 test.describe('Chatbot Feature', () => {
   // Set longer timeout for chatbot tests as they involve AI response generation
@@ -88,7 +89,7 @@ test.describe('Chatbot Feature', () => {
     const attachmentButton = page.locator('[aria-label*="ttach"], [data-testid*="attach"], [data-testid*="upload"], button[title*="ttach"]').first();
 
     // Use file chooser to handle the file upload properly
-    const filePath = '/Users/thanhpham/Atrix file test/Test2410/Atrix data/XLSX+CSV Examples/FM_EUCAN_UK_Multi Asset_Multi Tumor_Field Engagements_August 2024.xlsx';
+    const filePath = path.resolve(__dirname, '..', 'test-files', 'test-data.xlsx');
 
     // Try to find and click the attachment button
     if (await attachmentButton.isVisible({ timeout: 5000 }).catch(() => false)) {
