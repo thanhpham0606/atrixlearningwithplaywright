@@ -43,6 +43,13 @@ export default defineConfig({
       // Use Chrome channel for headed local runs; headless in CI
       channel: 'chrome',
       headless: !!process.env.CI,
+      // Prevent headless detection by the remote app in CI
+      ...(process.env.CI ? {
+        userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36',
+        launchOptions: {
+          args: ['--disable-blink-features=AutomationControlled'],
+        },
+      } : {}),
     },
   },
 ],
