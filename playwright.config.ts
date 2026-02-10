@@ -40,10 +40,9 @@ export default defineConfig({
   {
     name: 'chromium',
     use: {
-      // Use installed Chrome browser in headed mode
-      // (the API blocks headless browsers, so we run with visible browser)
+      // Use Chrome channel for headed local runs; headless in CI
       channel: 'chrome',
-      headless: false,
+      headless: !!process.env.CI,
     },
   },
 ],
